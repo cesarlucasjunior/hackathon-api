@@ -1,0 +1,2 @@
+insert into projeto values (null, 'Teste Descrição - Script', 'Teste Nome - Script');
+insert into historico_projeto (acao, descricao, id) values ('SALVAR', '[1 - Teste Nome - Script - Teste Descrição - Script]', null);
