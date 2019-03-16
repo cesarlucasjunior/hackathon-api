@@ -9,4 +9,6 @@ import com.stefanini.projeto.model.Aluno;
 public interface AlunoRepository extends JpaRepository<Aluno, Long>{
 
 	public List<Aluno> findByNomeContainingIgnoreCase(String nome);
+	
+	public Aluno findByNome(String nome);
 }

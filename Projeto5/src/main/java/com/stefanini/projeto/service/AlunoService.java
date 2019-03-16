@@ -40,10 +40,12 @@ public class AlunoService {
 
 	@Transactional
 	public Aluno insert(Aluno aluno) {
-
-		// Garantia contra erros
-		aluno.setId(null);
-		return alunoRepository.save(aluno);
+		Aluno alunoValidacao = alunoRepository.findByNome(aluno.getNome());		
+		if(alunoValidacao!= null) {
+			throw new DataIntegrityException("Erro! Já existe um aluno com esse nome!");
+		}else {	
+			return alunoRepository.save(aluno);
+		}
 	}
 
 	@Transactional
