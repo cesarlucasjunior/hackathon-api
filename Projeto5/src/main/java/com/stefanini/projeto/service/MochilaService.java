@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.stefanini.projeto.exception.DataIntegrityException;
+import com.stefanini.projeto.exception.InstanceNumberExceeded;
 import com.stefanini.projeto.exception.ObjectNotFoundException;
 import com.stefanini.projeto.model.Aluno;
 import com.stefanini.projeto.model.Mochila;
@@ -42,6 +43,8 @@ public class MochilaService {
 		
 		if(alunoOptional.get().getId() == null) {
 			throw new ObjectNotFoundException("Uma mochila precisa, obrigatoriamente, de um aluno vinculado!");
+		} else if(alunoOptional.get().getMochilas().size() > 4){
+			throw new InstanceNumberExceeded("Só podem, no máximo 5 mochilas por usuário!");
 		} else {
 		
 			Aluno aluno = new Aluno();

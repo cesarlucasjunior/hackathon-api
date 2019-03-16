@@ -6,4 +6,5 @@ import com.stefanini.projeto.model.Mochila;
 
 public interface MochilaRepository extends JpaRepository<Mochila, Long> {
 
+	public Long countByMarca(String marca);
 }

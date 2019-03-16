@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,6 +22,7 @@ public class Aluno implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@Column(unique=true)//Apesar de definir como único, farei a validação programaticamente.
+	@Size(max=20)
 	private String nome;
 	private String turma;
 

@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Mochila implements Serializable {
@@ -17,6 +18,7 @@ public class Mochila implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+	@Size(max=20)
 	private String marca;
 	
 	@ManyToOne
