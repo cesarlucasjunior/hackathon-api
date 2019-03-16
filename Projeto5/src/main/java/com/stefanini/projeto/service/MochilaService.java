@@ -39,6 +39,7 @@ public class MochilaService {
 	@Transactional
 	public Mochila insert(Mochila mochila) {
 		mochila.setId(null);
+		System.out.println(mochila.getAluno().getId());
 		Optional<Aluno> alunoOptional = alunoRepository.findById(mochila.getAluno().getId());
 		
 		if(alunoOptional.get().getId() == null) {

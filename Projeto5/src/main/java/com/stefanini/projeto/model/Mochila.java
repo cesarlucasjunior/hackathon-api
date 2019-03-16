@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 public class Mochila implements Serializable {
 
@@ -23,6 +26,7 @@ public class Mochila implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="aluno_id")
+	@JsonIgnore
 	private Aluno aluno;
 
 	public Mochila() {
@@ -50,10 +54,12 @@ public class Mochila implements Serializable {
 		this.marca = marca;
 	}
 	
+	@JsonIgnore
 	public Aluno getAluno() {
 		return aluno;
 	}
-
+ 
+	@JsonProperty
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}

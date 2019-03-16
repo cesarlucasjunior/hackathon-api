@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Aluno implements Serializable {
 	private static final long serialVersionUID = -4948606430503522391L;
@@ -63,7 +61,6 @@ public class Aluno implements Serializable {
 		this.turma = turma;
 	}
 
-	@JsonIgnore
 	public List<Mochila> getMochilas() {
 		return mochilas;
 	}
