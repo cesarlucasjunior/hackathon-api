@@ -1,5 +1,6 @@
 package com.stefanini.projeto.service;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,13 +13,17 @@ import org.springframework.stereotype.Service;
 import com.stefanini.projeto.exception.DataIntegrityException;
 import com.stefanini.projeto.exception.ObjectNotFoundException;
 import com.stefanini.projeto.model.Aluno;
+import com.stefanini.projeto.model.Mochila;
 import com.stefanini.projeto.repository.AlunoRepository;
+import com.stefanini.projeto.repository.MochilaRepository;
 
 @Service
 public class AlunoService {
 
 	@Autowired
 	private AlunoRepository alunoRepository;
+	@Autowired
+	private MochilaRepository mochilaRepository;
 
 	// Busca aluno por id e caso não encontre retorna uma exception personalizada.
 	public Aluno find(Long id) {
@@ -29,7 +34,7 @@ public class AlunoService {
 				"Objeto não encontrado! Id " + id + ", Tipo: " + Aluno.class.getName()));
 	}
 
-	// findByName
+	// findByAluno
 	public List<Aluno>findByAluno(String nome){
 		return alunoRepository.findByNomeContainingIgnoreCase(nome);
 	}
@@ -44,6 +49,11 @@ public class AlunoService {
 		if(alunoValidacao!= null) {
 			throw new DataIntegrityException("Erro! Já existe um aluno com esse nome!");
 		}else {	
+			for(Iterator<Mochila> iterator = aluno.getMochilas().iterator();iterator.hasNext();){
+				Mochila mochilaDoAluno = iterator.next();
+				mochilaDoAluno.setAluno(aluno);
+				mochilaRepository.save(mochilaDoAluno);
+			}
 			return alunoRepository.save(aluno);
 		}
 	}
