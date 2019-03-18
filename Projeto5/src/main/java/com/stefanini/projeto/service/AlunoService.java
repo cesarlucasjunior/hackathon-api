@@ -47,6 +47,7 @@ public class AlunoService {
 	public Aluno insert(Aluno aluno) {
 		Aluno alunoValidacao = alunoRepository.findByNome(aluno.getNome());		
 		if(alunoValidacao!= null) {
+			System.out.println("----------------------Nome--------------------" + alunoValidacao.getNome());
 			throw new DataIntegrityException("Erro! Já existe um aluno com esse nome!");
 		}else {	
 			for(Iterator<Mochila> iterator = aluno.getMochilas().iterator();iterator.hasNext();){
@@ -60,8 +61,10 @@ public class AlunoService {
 
 	@Transactional
 	public Aluno update(Aluno aluno) {
-		find(aluno.getId());
-		return alunoRepository.save(aluno);
+		Optional<Aluno> alunoFind  = alunoRepository.findById(aluno.getId());
+		alunoFind.get().setNome(aluno.getNome());
+		alunoFind.get().setTurma(aluno.getTurma());
+		return alunoRepository.save(alunoFind.get());
 	}
 
 	public void delete(Long id) {
