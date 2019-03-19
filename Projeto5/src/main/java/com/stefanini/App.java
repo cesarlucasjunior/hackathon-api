@@ -28,7 +28,7 @@ public class App extends SpringBootServletInitializer implements CommandLineRunn
 	public void run(String... args) throws Exception {
 
 		Mochila mochila1 = new Mochila("Adidas");
-		Mochila mochila2 = new Mochila("Adidas");
+		Mochila mochila2 = new Mochila("Nike");
 		Aluno aluno = new Aluno("César Lucas Júnior", "A");
 		
 		

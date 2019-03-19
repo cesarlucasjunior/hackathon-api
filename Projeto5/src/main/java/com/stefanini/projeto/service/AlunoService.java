@@ -29,14 +29,18 @@ public class AlunoService {
 	public Aluno find(Long id) {
 
 		Optional<Aluno> alunoOptional = alunoRepository.findById(id);
-
 		return alunoOptional.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id " + id + ", Tipo: " + Aluno.class.getName()));
 	}
 
 	// findByAluno
 	public List<Aluno>findByAluno(String nome){
-		return alunoRepository.findByNomeContainingIgnoreCase(nome);
+		List<Aluno> alunoOptional = alunoRepository.findByNomeContainingIgnoreCase(nome);
+		if(alunoOptional.equals(null)) {
+			throw new ObjectNotFoundException("Usuário não encontrado!");			
+		}else {
+			return alunoOptional;
+		}
 	}
 
 	public List<Aluno> findAll() {
@@ -47,7 +51,6 @@ public class AlunoService {
 	public Aluno insert(Aluno aluno) {
 		Aluno alunoValidacao = alunoRepository.findByNome(aluno.getNome());		
 		if(alunoValidacao!= null) {
-			System.out.println("----------------------Nome--------------------" + alunoValidacao.getNome());
 			throw new DataIntegrityException("Erro! Já existe um aluno com esse nome!");
 		}else {	
 			for(Iterator<Mochila> iterator = aluno.getMochilas().iterator();iterator.hasNext();){

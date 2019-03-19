@@ -53,4 +53,5 @@ public class AlunoResource {
 		alunoService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
 }

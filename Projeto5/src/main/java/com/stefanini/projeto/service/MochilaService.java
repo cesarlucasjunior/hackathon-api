@@ -44,7 +44,7 @@ public class MochilaService {
 		if(alunoOptional.get().getId() == null) {
 			throw new ObjectNotFoundException("Uma mochila precisa, obrigatoriamente, de um aluno vinculado!");
 		} else if(alunoOptional.get().getMochilas().size() > 4){
-			throw new InstanceNumberExceeded("Só podem, no máximo 5 mochilas por usuário!");
+			throw new InstanceNumberExceeded("Só podem, no máximo, 5 mochilas por usuário!");
 		} else {
 		
 			Aluno aluno = new Aluno();
