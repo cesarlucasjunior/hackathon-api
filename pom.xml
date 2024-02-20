@@ -3,9 +3,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.stefanini</groupId>
-	<artifactId>projeto5</artifactId>
+	<artifactId>hackathon-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Projeto5</name>
+	<name>hackathon-api</name>
 	<url>http://maven.apache.org</url>
 	<packaging>war</packaging>
 
